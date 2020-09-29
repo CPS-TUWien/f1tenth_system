@@ -1,6 +1,6 @@
 
 # erpm (electrical rpm) = speed_to_erpm_gain * speed (meters / second) + speed_to_erpm_offset
-speed_to_erpm_gain: 4614
+speed_to_erpm_gain: 7455.06966 # [m/s] to ermp convert => 60[sec->min] * 19.69[gear-ratio] * 1/wheel-diameter[m] * number-poles/2
 speed_to_erpm_offset: 0.0
 
 tachometer_ticks_to_meters_gain: 0.00225
