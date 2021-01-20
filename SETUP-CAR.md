@@ -7,7 +7,8 @@ _as installed on 2021-01-19_
 * Configure WLAN to connect to _racetrack_ automatically
 * Configure eth0 for LIDAR: static 192.168.0.15/24 (LIDAR IP: 192.168.0.10)
 * Install [ROS Melodic]
-* `apt-get install ros-melodic-driver-common ros-melodic-laser-proc ros-melodic-urg-c screen mc nano cmatrix`
+* `apt-get install ros-melodic-driver-common ros-melodic-laser-proc ros-melodic-urg-c screen mc nano cmatrix python3-pip`
+* `pip3 install rosdep rospkg`
 * Install udev-rules (`10-racecar.rules`)
 * add user to `docker` and `dailout` group
 
