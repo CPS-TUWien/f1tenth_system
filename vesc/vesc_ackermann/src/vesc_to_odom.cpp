@@ -59,14 +59,17 @@ void VescToOdom::vescStateCallback(const vesc_msgs::VescStateStamped::ConstPtr& 
 
   // convert to engineering units
   double current_speed = ( -state->state.speed - speed_to_erpm_offset_ ) / speed_to_erpm_gain_;
-  if (std::fabs(current_speed) < 0.14){
+  if (std::fabs(current_speed) < 0.15){
     current_speed = 0.0;
   }
   double current_steering_angle(0.0), current_angular_velocity(0.0);
   if (use_servo_cmd_) {
     current_steering_angle =
       ( last_servo_cmd_->data - steering_to_servo_offset_ ) / steering_to_servo_gain_;
-    current_angular_velocity = current_speed /( tan(M_PI_2 - current_steering_angle) * wheelbase_);
+    double r = wheelbase_ / tan(current_steering_angle) + 0.13; // 0.13-> offset inner turning radius to center of axis
+    current_angular_velocity = current_speed / r; 
+    ROS_DEBUG("lin_vel: %lf\tsteering_angle %lf\nTurning Radius: %lf\nAngular_v: %lf\n",
+		    current_speed, current_steering_angle, r, current_angular_velocity);
   }
 
   // use current state as last state if this is our first time here
