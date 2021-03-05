@@ -528,6 +528,7 @@ void UrgNode::scanThread()
           const sensor_msgs::LaserScanPtr msg(new sensor_msgs::LaserScan());
           if (urg_->grabScan(msg))
           {
+            msg->header.stamp = ros::Time::now();
             laser_pub_.publish(msg);
             laser_freq_->tick();
           }
