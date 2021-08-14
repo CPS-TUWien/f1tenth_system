@@ -156,7 +156,7 @@ class JoyTeleop:
 
         # This might also be a default command.
         # We need to check if ANY commands match this set of pressed buttons.
-        any_commands_matched = np.any([ np.array_equal(command['buttons'], button_indexes) for name, command in self.command_list.iteritems()])
+        any_commands_matched = np.any([ np.array_equal(command['buttons'], button_indexes) for name, command in self.command_list.items()])
 
         # Return the final result.
         return (buttons_match) or (not any_commands_matched and self.command_list[c]['is_default'])
@@ -274,12 +274,12 @@ class JoyTeleop:
         if service_name not in self.service_types:
             try:
                 self.service_types[service_name] = rosservice.get_service_class_by_name(service_name)
-            except ROSServiceException, e:
+            except ROSServiceException as e:
                 raise JoyTeleopException("service {} could not be loaded: {}".format(service_name, str(e)))
         return self.service_types[service_name]
 
     def update_actions(self, evt=None):
-        for name, cmd in self.command_list.iteritems():
+        for name, cmd in self.command_list.items():
             if cmd['type'] != 'action':
                 continue
             if cmd['action_name'] in self.offline_actions:
