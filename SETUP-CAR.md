@@ -13,10 +13,17 @@ _as installed on 2021-01-19_
 * add user to `docker` and `dailout` group
 ### Very often needed:
 * `sudo apt-get install ros-melodic-tf2-geometry-msgs ros-melodic-ackermann-msgs ros-melodic-joy ros-melodic-map-server`   
+
 ## Adjustments after cloning one car to another
 * change hostname (`/etc/hostname`)
 * change Interface/Mac on eth0 for LIDAR (GUI network manager)
-* update IP in `~/.bashrc`
+* update IP in `~/.bashrc` (adjust the IP below for the specific car):
+
+`
+export ROS_MASTER_URI=http://192.168.1.103:11311
+export ROS_HOSTNAME=192.168.1.103
+export ROS_IP=192.168.1.103
+`
 
 ## Notes for testing
 * `jstest /dev/`
